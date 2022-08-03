@@ -1,3 +1,4 @@
+// ./caesar number
 // Program that encrypts messages using Caesar’s cipher
 #include <stdio.h>
 #include <cs50.h>
@@ -20,10 +21,15 @@ int main(int argc, string argv[1])
   }
 
   // Make sure every character in argv[1] is a digit
+  string S = argv[1];
   int only_digits(string S);
+  if (only_digits(S) == 1)
+  {
+    printf("%s", "Usage: ./caesar key\n");
+    return 1;
+  }
 
   // Convert argv[1] from a `string` to an `int`
-  string S = argv[1];
   int K = atoi(S);
 
   // Prompt user for plaintext
@@ -61,13 +67,8 @@ int only_digits(string s)
 {
   for (int i = 0; i < strlen(s); i++)
   {
-    int digit_or_not = isdigit(s[i]);
-    if (digit_or_not == 1)
+    if (isdigit(s[i]) == 0)
     {
-    }
-    else
-    {
-      printf("%s", "Usage: ./caesar key\n");
       return 1;
     }
   }
